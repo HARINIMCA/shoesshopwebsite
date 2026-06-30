@@ -140,67 +140,100 @@
 </head>
 
 <body>
+
     <header>FOOT PARTNER LOGIN FORM</header>
+
     <div>
+
         <label>Full Name:</label><br>
         <input id="name" class="box"><br>
-        <p id="notfill1" style="color: red;"></p>
+        <p id="notfill1" style="color:red;"></p>
+
         <label>Email:</label><br>
         <input id="email" type="email" class="box"><br>
-        <p id="notfill2" style="color: red;"></p>
+        <p id="notfill2" style="color:red;"></p>
+
         <label>Address:</label><br>
-        <textarea id="Address" style=" width: 300px;
-            height: 40px;
-            border-radius: 9px;
-"></textarea> <br>
-        <p id="notfill3" style="color: red;"></p>
+        <textarea id="Address" style="width:300px;height:40px;border-radius:9px;"></textarea><br>
+        <p id="notfill3" style="color:red;"></p>
+
         <label>Gender:</label><br>
-        <input type="radio" name="Gender" value="Male">Male
-        <input type="radio" name="Gender" value="Female">Female<br>
+
+        <input type="radio" name="Gender" value="Male"> Male
+        <input type="radio" name="Gender" value="Female"> Female
         <p id="notfill4" style="color:red;"></p>
-        <label>Qualification:</label>
+
+        <label>Foot Size:</label><br>
+
         <select id="qualification">
-            <option value="">Select Qualification</option>
-            <option>10th</option>
-            <option>12th</option>
-            <option>Under Graduate </option>
-            <option>Post Graduate</option>
+            <option value="">Select Foot Size</option>
+            <option>UK 5</option>
+            <option>UK 6</option>
+            <option>UK 7</option>
+            <option>UK 8</option>
+            <option>UK 9</option>
+            <option>UK 10</option>
+            <option>UK 11</option>
         </select>
-        <p id="notfill5" style="color:red;"></p><br>
-        <label>Skills:</label><br>
-        <input type="checkbox" name="skill" value="HTML">HTML<br>
-        <input type="checkbox" name="skill" value="CSS">CSS<br>
-        <input type="checkbox" name="skill" value="ANIMATION">ANIMATION<br>
-        <input type="checkbox" name="skill" value="PHOTOSHOP">PHOTOSHOP<br>
-        <input type="checkbox" name="skill" value="GRAPHIC DESIGNING">GRAPHIC DESIGNING
-        <p id="notfill6" style="color:red;"></p><br>
+
+        <p id="notfill5" style="color:red;"></p>
+
+        <label>User Interest:</label><br>
+
+        <input type="checkbox" name="skill" value="Nike"> Nike <br>
+        <input type="checkbox" name="skill" value="Adidas"> Adidas <br>
+        <input type="checkbox" name="skill" value="Puma"> Puma <br>
+        <input type="checkbox" name="skill" value="Reebok"> Reebok <br>
+        <input type="checkbox" name="skill" value="New Balance"> New Balance <br>
+        <input type="checkbox" name="skill" value="Skechers"> Skechers
+
+        <p id="notfill6" style="color:red;"></p>
 
         <button onclick="display()" style="width:300px;
               height:40px;
-              background-color:rgb(10, 10, 121);
+              background-color:rgb(10,10,121);
               color:white;
-              border: none;
-              border-radius: 8px;
-             margin-top:20px;
-             margin-bottom:20px">SUBMIT</button>
+              border:none;
+              border-radius:8px;
+              margin-top:20px;
+              margin-bottom:20px;">
+            PREVIEW
+        </button>
+
     </div>
 
     <div id="output" class="output">
-        <label style="color: blue;">NAME:</label>
-        <p style="color: chocolate;" id="one"> </p>
-        <label style="color: blue;">Email:</label>
-        <p style="color: chocolate;" id="two"></p>
-        <label style="color: blue;">Address:</label>
-        <p style="color: chocolate;" id="three"></p>
-        <label style="color: blue;">Gender:</label>
-        <p style="color: chocolate;" id="four"></p>
-        <label style="color: blue;">Qualification:</label>
-        <p style="color: chocolate;" id="five"></p>
-        <label style="color: blue;">Skills:</label>
-        <p style="color: chocolate;" id="six"></p>
-    </div>
 
-   <script>
+        <label style="color:blue;">NAME:</label>
+        <p style="color:chocolate;" id="one"></p>
+
+        <label style="color:blue;">EMAIL:</label>
+        <p style="color:chocolate;" id="two"></p>
+
+        <label style="color:blue;">ADDRESS:</label>
+        <p style="color:chocolate;" id="three"></p>
+
+        <label style="color:blue;">GENDER:</label>
+        <p style="color:chocolate;" id="four"></p>
+
+        <label style="color:blue;">FOOT SIZE:</label>
+        <p style="color:chocolate;" id="five"></p>
+
+        <label style="color:blue;">USER INTEREST:</label>
+        <p style="color:chocolate;" id="six"></p>
+
+        <button onclick="submitForm()" style="width:300px;
+                height:40px;
+                background-color:green;
+                color:white;
+                border:none;
+                border-radius:8px;
+                margin-top:20px;">
+            SUBMIT
+        </button>
+
+    </div>
+<script>
 
 function validate() {
 
@@ -249,7 +282,7 @@ function validate() {
     var qualification = document.getElementById("qualification").value;
 
     if (qualification == "") {
-        document.getElementById("notfill5").innerText = "Select Qualification";
+        document.getElementById("notfill5").innerText = "Select Foot Size";
         valid = false;
     }
 
@@ -263,7 +296,7 @@ function validate() {
     }
 
     if (skills.length == 0) {
-        document.getElementById("notfill6").innerText = "Select at least one Skill";
+        document.getElementById("notfill6").innerText = "Select at least one Interest";
         valid = false;
     }
 
@@ -271,7 +304,7 @@ function validate() {
 }
 
 
-// Live validation only
+// Live validation
 document.getElementById("name").addEventListener("input", validate);
 document.getElementById("email").addEventListener("input", validate);
 document.getElementById("Address").addEventListener("input", validate);
@@ -288,7 +321,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 }
 
 
-// Runs only when Submit button is clicked
+// Preview button
 function display() {
 
     if (!validate()) {
@@ -330,8 +363,16 @@ function display() {
     document.getElementById("six").innerText = skills.join(", ");
 }
 
-</script>
 
+// Submit button
+function submitForm() {
+
+    alert("Login Successfully");
+
+    window.location.href = "index.html";
+}
+
+</script>
 </body>
 
 </html>
