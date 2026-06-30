@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM VALIDATION</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, rgb(10, 84, 141), rgb(34, 139, 230));
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            padding-top: 100px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(10, 84, 141);
+            color: white;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            padding: 20px;
+            box-shadow: 0px 2px 10px gray;
+        }
+
+        div {
+            width: 430px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: rgb(10,84,141);
+        }
+
+        .box {
+            width: 95%;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding-left: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .box:focus {
+            border: 2px solid rgb(10,84,141);
+            outline: none;
+        }
+
+        textarea {
+            width: 95%;
+            height: 70px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        textarea:focus {
+            border: 2px solid rgb(10,84,141);
+            outline: none;
+        }
+
+        select {
+            width: 95%;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-top: 10px;
+            margin-right: 8px;
+        }
+
+        button {
+            width: 95%;
+            height: 45px;
+            background-color: rgb(10,84,141);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: rgb(6,60,104);
+        }
+
+        p {
+            color: red;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 8px;
+        }
+
+        .output {
+            width: 430px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+            margin-left: 50px;
+            background-color: white;
+            display: none;
+        
+        }
+    
+        .output h1 {
+            color: rgb(60,60,60);
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>FORM VALIDATION</header>
+    <div>
+        <label>Full Name:</label><br>
+        <input id="name" class="box"><br>
+        <p id="notfill1" style="color: red;"></p>
+        <label>Email:</label><br>
+        <input id="email" type="email" class="box"><br>
+        <p id="notfill2" style="color: red;"></p>
+        <label>Address:</label><br>
+        <textarea id="Address" style=" width: 300px;
+            height: 40px;
+            border-radius: 9px;
+"></textarea> <br>
+        <p id="notfill3" style="color: red;"></p>
+        <label>Gender:</label><br>
+        <input type="radio" name="Gender" value="Male">Male
+        <input type="radio" name="Gender" value="Female">Female<br>
+        <p id="notfill4" style="color:red;"></p>
+        <label>Qualification:</label>
+        <select id="qualification">
+            <option value="">Select Qualification</option>
+            <option>10th</option>
+            <option>12th</option>
+            <option>Under Graduate </option>
+            <option>Post Graduate</option>
+        </select>
+        <p id="notfill5" style="color:red;"></p><br>
+        <input type="checkbox" name="skill" value="HTML">HTML<br>
+        <input type="checkbox" name="skill" value="CSS">CSS<br>
+        <input type="checkbox" name="skill" value="ANIMATION">ANIMATION<br>
+        <input type="checkbox" name="skill" value="PHOTOSHOP">PHOTOSHOP<br>
+        <input type="checkbox" name="skill" value="GRAPHIC DESIGNING">GRAPHIC DESIGNING
+        <p id="notfill6" style="color:red;"></p><br>
+
+        <button onclick="display()" style="width:300px;
+              height:40px;
+              background-color:rgb(10, 10, 121);
+              color:white;
+              border: none;
+              border-radius: 8px;
+             margin-top:20px;
+             margin-bottom:20px">SUBMIT</button>
+    </div>
+
+    <div id="output" class="output">
+        <label style="color: blue;">NAME:</label>
+        <p style="color: chocolate;" id="one"> </p>
+        <label style="color: blue;">Email:</label>
+        <p style="color: chocolate;" id="two"></p>
+        <label style="color: blue;">Address:</label>
+        <p style="color: chocolate;" id="three"></p>
+        <label style="color: blue;">Gender:</label>
+        <p style="color: chocolate;" id="four"></p>
+        <label style="color: blue;">Qualification:</label>
+        <p style="color: chocolate;" id="five"></p>
+        <label style="color: blue;">Skills:</label>
+        <p style="color: chocolate;" id="six"></p>
+    </div>
+
+    <script>
+document.getElementById("name").addEventListener("keyup", display);
+document.getElementById("email").addEventListener("keyup", display);
+document.getElementById("Address").addEventListener("keyup", display);
+
+document.getElementById("qualification").addEventListener("change", display);
+
+var genders = document.getElementsByName("Gender");
+for (var i = 0; i < genders.length; i++) {
+    genders[i].addEventListener("change", display);
+}
+
+var checkboxes = document.getElementsByName("skill");
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener("change", display);
+}
+
+function display() {
+
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var address = document.getElementById("Address").value.trim();
+
+    var output = document.getElementById("output");
+
+    document.getElementById("notfill1").innerText = "";
+    document.getElementById("notfill2").innerText = "";
+    document.getElementById("notfill3").innerText = "";
+    document.getElementById("notfill4").innerText = "";
+    document.getElementById("notfill5").innerText = "";
+    document.getElementById("notfill6").innerText = "";
+
+    var valid = true;
+
+    if (name == "") {
+        document.getElementById("notfill1").innerText = "Name is required";
+        valid = false;
+    }
+
+    if (email == "") {
+        document.getElementById("notfill2").innerText = "Email is required";
+        valid = false;
+    }
+
+    if (address == "") {
+        document.getElementById("notfill3").innerText = "Address is required";
+        valid = false;
+    }
+
+    var gender = "";
+    var genders = document.getElementsByName("Gender");
+
+    for (var i = 0; i < genders.length; i++) {
+        if (genders[i].checked) {
+            gender = genders[i].value;
+        }
+    }
+
+    if (gender == "") {
+        document.getElementById("notfill4").innerText = "Please select Gender";
+        valid = false;
+    }
+
+    var qualification = document.getElementById("qualification").value;
+
+    if (qualification == "") {
+        document.getElementById("notfill5").innerText = "Select Qualification";
+        valid = false;
+    }
+
+    var skills = [];
+    var checkboxes = document.getElementsByName("skill");
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            skills.push(checkboxes[i].value);
+        }
+    }
+
+    if (skills.length == 0) {
+        document.getElementById("notfill6").innerText = "Select at least one Skill";
+        valid = false;
+    }
+
+    if (valid) {
+        output.style.display = "block";
+
+        document.getElementById("one").innerText = name;
+        document.getElementById("two").innerText = email;
+        document.getElementById("three").innerText = address;
+        document.getElementById("four").innerText = gender;
+        document.getElementById("five").innerText = qualification;
+        document.getElementById("six").innerText = skills.join(", ");
+    }
+    else {
+        output.style.display = "none";
+    }
+}
+       
+    </script>
+
+</body>
+
+</html>
+
+<!--<label>Password:</label><br>
+        <input type="password" class="box"><br>
+        <label>Date of Birth:</label><br>
+        <input type="date" class="box"><br>
+        <label>Phone Number:</label><br>
+        <input type="number"class="box"><br>
+        if (email == "") {
+                document.getElementById("notfill2").innerText = "Email is required";
+            } else {
+                document.getElementById("notfill2").innerText = "";
+                document.getElementById("two").innerText = email;
+            }
+            if (address == "") {
+                document.getElementById("notfill3").innerText = "Address is required";
+            } else {
+                document.getElementById("notfill3").innerText = "";
+                document.getElementById("three").innerText = address;
+            }
+
+
+function display() {
+
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var address = document.getElementById("Address").value.trim();
+
+            var output = document.getElementById("output");
+
+            // Clear previous error messages
+            document.getElementById("notfill1").innerText = "";
+            document.getElementById("notfill2").innerText = "";
+            document.getElementById("notfill3").innerText = "";
+            document.getElementById("notfill4").innerText = "";
+            document.getElementById("notfill5").innerText = "";
+            document.getElementById("notfill6").innerText = "";
+            var gender = "";
+
+            var genders = document.getElementsByName("Gender");
+
+            for (var i = 0; i < genders.length; i++) {
+                if (genders[i].checked) {
+                    gender = genders[i].value;
+                }
+            }
+
+            var qualification =
+                document.getElementById("qualification").value;
+
+            var skills = [];
+
+            var checkboxes = document.getElementsByName("skill");
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    skills.push(checkboxes[i].value);
+                }
+            }
+
+            var valid = true;
+
+            if (name == "") {
+                document.getElementById("notfill1").innerText = "Name is required";
+                valid = false;
+            }
+
+            if (email == "") {
+                document.getElementById("notfill2").innerText = "Email is required";
+                valid = false;
+            }
+
+            if (address == "") {
+                document.getElementById("notfill3").innerText = "Address is required";
+                valid = false;
+            }
+            if (gender == "") {
+                document.getElementById("notfill4").innerText = "Please select Gender";
+                valid = false;
+            }
+            else {
+                document.getElementById("notfill4").innerText = "";
+            }
+            if (qualification == "") {
+                document.getElementById("notfill5").innerText = "Select Qualification";
+                valid = false;
+            }
+            else {
+                document.getElementById("notfill5").innerText = "";
+            }
+            if (skills.length == 0) {
+                document.getElementById("notfill6").innerText = "Select at least one Skill";
+                valid = false;
+            }
+            else {
+                document.getElementById("notfill6").innerText = "";
+            }
+            if (valid) {
+                output.style.display = "block";
+
+                document.getElementById("one").innerText = name;
+                document.getElementById("two").innerText = email;
+                document.getElementById("three").innerText = address;
+                document.getElementById("four").innerText = gender;
+                document.getElementById("five").innerText = qualification;
+                document.getElementById("six").innerText = skills.join(", ");
+            } else {
+                output.style.display = "none";
+            }
+        }            -->
