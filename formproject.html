@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM VALIDATION</title>
+    <title>FOOT PARTNER USER LOGIN</title>
 
     <style>
         body {
@@ -140,7 +140,7 @@
 </head>
 
 <body>
-    <header>FORM VALIDATION</header>
+    <header>FOOT PARTNER LOGIN FORM</header>
     <div>
         <label>Full Name:</label><br>
         <input id="name" class="box"><br>
@@ -200,30 +200,13 @@
         <p style="color: chocolate;" id="six"></p>
     </div>
 
-    <script>
-document.getElementById("name").addEventListener("keyup", display);
-document.getElementById("email").addEventListener("keyup", display);
-document.getElementById("Address").addEventListener("keyup", display);
+   <script>
 
-document.getElementById("qualification").addEventListener("change", display);
-
-var genders = document.getElementsByName("Gender");
-for (var i = 0; i < genders.length; i++) {
-    genders[i].addEventListener("change", display);
-}
-
-var checkboxes = document.getElementsByName("skill");
-for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener("change", display);
-}
-
-function display() {
+function validate() {
 
     var name = document.getElementById("name").value.trim();
     var email = document.getElementById("email").value.trim();
     var address = document.getElementById("Address").value.trim();
-
-    var output = document.getElementById("output");
 
     document.getElementById("notfill1").innerText = "";
     document.getElementById("notfill2").innerText = "";
@@ -284,22 +267,70 @@ function display() {
         valid = false;
     }
 
-    if (valid) {
-        output.style.display = "block";
-
-        document.getElementById("one").innerText = name;
-        document.getElementById("two").innerText = email;
-        document.getElementById("three").innerText = address;
-        document.getElementById("four").innerText = gender;
-        document.getElementById("five").innerText = qualification;
-        document.getElementById("six").innerText = skills.join(", ");
-    }
-    else {
-        output.style.display = "none";
-    }
+    return valid;
 }
-       
-    </script>
+
+
+// Live validation only
+document.getElementById("name").addEventListener("input", validate);
+document.getElementById("email").addEventListener("input", validate);
+document.getElementById("Address").addEventListener("input", validate);
+document.getElementById("qualification").addEventListener("change", validate);
+
+var genders = document.getElementsByName("Gender");
+for (var i = 0; i < genders.length; i++) {
+    genders[i].addEventListener("change", validate);
+}
+
+var checkboxes = document.getElementsByName("skill");
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener("change", validate);
+}
+
+
+// Runs only when Submit button is clicked
+function display() {
+
+    if (!validate()) {
+        document.getElementById("output").style.display = "none";
+        return;
+    }
+
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var address = document.getElementById("Address").value.trim();
+
+    var gender = "";
+    var genders = document.getElementsByName("Gender");
+
+    for (var i = 0; i < genders.length; i++) {
+        if (genders[i].checked) {
+            gender = genders[i].value;
+        }
+    }
+
+    var qualification = document.getElementById("qualification").value;
+
+    var skills = [];
+    var checkboxes = document.getElementsByName("skill");
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            skills.push(checkboxes[i].value);
+        }
+    }
+
+    document.getElementById("output").style.display = "block";
+
+    document.getElementById("one").innerText = name;
+    document.getElementById("two").innerText = email;
+    document.getElementById("three").innerText = address;
+    document.getElementById("four").innerText = gender;
+    document.getElementById("five").innerText = qualification;
+    document.getElementById("six").innerText = skills.join(", ");
+}
+
+</script>
 
 </body>
 
